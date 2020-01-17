@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+/*Function Prototypes*/
+int *create2DArray ( int rows, int cols );
+void set2DElement( int *array, int row, int col, int value );
+int get2DElement ( int *array, int row, int col );
+void free2DArray ( int *array );
+/*Function Prototypes*/
+
+
+int *create2DArray (int rows, int cols) {
+	/*declare variables*/
+	int *iptr; /*declare pointer to allocate memory*/
+
+	iptr = (int *)malloc(sizeof(int) * rows * cols); /*allocate memory for a single row, 2D array held in a single array*/
+	return iptr; /*return single array of pointers*/
+
+}
+void set2DElement( int *array, int row, int col, int value ) {
+	/*declare variables*/
+	int weight;
+
+	weight = sizeof(array)/sizeof(array[0]); /*Equal to the amount of memory held in each row*/
+
+	array[(row-1)*(weight)+col] = value; /*Setting the specified row and col to value*/
+}
+int get2DElement ( int *array, int row, int col ) {
+	/*declare variables*/
+	int weight;
+
+	weight = sizeof(array)/sizeof(array[0]); /*Equal to the amount of memory held in each row*/
+
+	return array[(row-1)*(weight)+col]; /*return the value in the position of that column, -1 because array starts at 0*/
+}
+void free2DArray ( int *array ) {
+	/*declare variables*/
+	free(array); /* Free final array (row) */
+}
